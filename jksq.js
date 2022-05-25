@@ -1,10 +1,8 @@
+
 /*
-
-½¨ÒéÊÖ¶¯ÏÈµã¿ªÒ»´Î
-33 0,6-23/2 * * * jd_19E.js
-
+cron "1 0,0 * * *" 
 */
-const $ = new Env('¾©¶«½¡¿µÉçÇø¶Ò»»¾©¶¹');
+const $ = new Env('å¥åº·ç¤¾åŒºå…‘æ¢äº¬è±†');
 
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 
@@ -31,7 +29,7 @@ $.shareCodesArr = [];
 
 !(async () => {
     if (!cookiesArr[0]) {
-        $.msg($.name, '¡¾ÌáÊ¾¡¿ÇëÏÈ»ñÈ¡¾©¶«ÕËºÅÒ»cookie\nÖ±½ÓÊ¹ÓÃNobyDaµÄ¾©¶«Ç©µ½»ñÈ¡', 'https://bean.m.jd.com/bean/signIndex.action', { "open-url": "https://bean.m.jd.com/bean/signIndex.action" });
+        $.msg($.name, 'ã€æç¤ºã€‘è¯·å…ˆè·å–äº¬ä¸œè´¦å·ä¸€cookie\nç›´æ¥ä½¿ç”¨NobyDaçš„äº¬ä¸œç­¾åˆ°è·å–', 'https://bean.m.jd.com/bean/signIndex.action', { "open-url": "https://bean.m.jd.com/bean/signIndex.action" });
         return;
     }
 
@@ -45,7 +43,7 @@ $.shareCodesArr = [];
         }
     }
     let lnTotalAcc = Math.ceil(cookiesArr.length );
-    console.log(`±¾´ÎÖ´ĞĞµÚ${1}µ½${lnTotalAcc}¸öÕËºÅ\n`);
+    console.log(`æœ¬æ¬¡æ‰§è¡Œç¬¬${1}åˆ°${lnTotalAcc}ä¸ªè´¦å·\n`);
     for (let i = 0; i < lnTotalAcc; i++) {
         if (cookiesArr[i]) {
             cookie = cookiesArr[i];
@@ -54,8 +52,8 @@ $.shareCodesArr = [];
             $.isLogin = true;
             $.nickName = '';
             message = '';
-            console.log(`\n******¿ªÊ¼¡¾¾©¶«ÕËºÅ${$.index}¡¿${$.nickName || $.UserName}*********\n`);
-            //   ¿ªÊ¼Ö´ĞĞ¶Ò»»¶¼ÈÎÎñ
+            console.log(`\n******å¼€å§‹ã€äº¬ä¸œè´¦å·${$.index}ã€‘${$.nickName || $.UserName}*********\n`);
+            //   å¼€å§‹æ‰§è¡Œå…‘æ¢éƒ½ä»»åŠ¡
             await bankuai(cookie, 'functionId=jdhealth_exchange&body={"commodityType":2,"commodityId":"4"}&client=wh5&clientVersion=1.0.0&uuid=')
             await bankuai(cookie, 'functionId=jdhealth_exchange&body={"commodityType":2,"commodityId":"3"}&client=wh5&clientVersion=1.0.0&uuid=')
             await bankuai(cookie, 'functionId=jdhealth_exchange&body={"commodityType":2,"commodityId":"2"}&client=wh5&clientVersion=1.0.0&uuid=')
@@ -71,9 +69,7 @@ async function bankuai(Cooker, token) {
             url: `https://api.m.jd.com`,
             headers: {
                 "content-type": "application/x-www-form-urlencoded",
-                // "apitoken": "955d369e676f40158b2d7afb163f03e6c4851e4ece9444fbbf51f9b42d18a999",
                 "User-Agent": "Mozilla/5.0 (Linux; Android 11; M2012K10C Build/RP1A.200720.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/86.0.4240.99 XWEB/3185 MMWEBSDK/20220105 Mobile Safari/537.36 MMWEBID/3032 MicroMessenger/8.0.19.2080(0x28001339) Process/toolsmp WeChat/arm64 Weixin NetType/WIFI Language/zh_CN ABI/arm64",
-                // "Referer":"https://servicewechat.com/wxd79ec05386a78727/55/page-frame.html",
                 "Cookie": Cooker,
             },
             body: token,
@@ -81,13 +77,13 @@ async function bankuai(Cooker, token) {
         $.post(url, async (err, resp, data) => {
             try {
                 let result = JSON.parse(data)
-                console.log(`³é½±³É¹¦:${result.msg}`)
+                console.log(`æŠ½å¥–æˆåŠŸ:${result.msg}`)
                 if (result.data.bizCode == "-6060") {
                     console.log(result.data.bizMsg)
                 } if (result.data.bizCode == "success") {
-                    console.log(`¶Ò»»³É¹¦:${result.data.result.jingBeanNum}¶¹`)
+                    console.log(`å…‘æ¢æˆåŠŸ:${result.data.result.jingBeanNum}è±†`)
                 } else {
-                    console.log(`¶Ò»»´íÎó¿ÉÄÜºÚºÅ`)
+                    console.log(`å…‘æ¢é”™è¯¯å¯èƒ½é»‘å·`)
                 }
             } catch (e) {
 
@@ -119,7 +115,7 @@ function jsonParse(str) {
             return JSON.parse(str);
         } catch (e) {
             console.log(e);
-            $.msg($.name, '', 'ÇëÎğËæÒâÔÚBoxJsÊäÈë¿òĞŞ¸ÄÄÚÈİ\n½¨ÒéÍ¨¹ı½Å±¾È¥»ñÈ¡cookie')
+            $.msg($.name, '', 'è¯·å‹¿éšæ„åœ¨BoxJsè¾“å…¥æ¡†ä¿®æ”¹å†…å®¹\nå»ºè®®é€šè¿‡è„šæœ¬å»è·å–cookie')
             return [];
         }
     }
@@ -134,7 +130,7 @@ function Env(t, e) {
         post(t) { return this.send.call(this.env, t, "POST") }
     }
     return new class {
-        constructor(t, e) { this.name = t, this.http = new s(this), this.data = null, this.dataFile = "box.dat", this.logs = [], this.isMute = !1, this.isNeedRewrite = !1, this.logSeparator = "\n", this.startTime = (new Date).getTime(), Object.assign(this, e), this.log("", `??${this.name}, ¿ªÊ¼!`) }
+        constructor(t, e) { this.name = t, this.http = new s(this), this.data = null, this.dataFile = "box.dat", this.logs = [], this.isMute = !1, this.isNeedRewrite = !1, this.logSeparator = "\n", this.startTime = (new Date).getTime(), Object.assign(this, e), this.log("", `??${this.name}, å¼€å§‹!`) }
         isNode() { return "undefined" != typeof module && !!module.exports }
         isQuanX() { return "undefined" != typeof $task }
         isSurge() { return "undefined" != typeof $httpClient && "undefined" == typeof $loon }
@@ -273,20 +269,20 @@ function Env(t, e) {
                 }
             };
             if (this.isMute || (this.isSurge() || this.isLoon() ? $notification.post(e, s, i, o(r)) : this.isQuanX() && $notify(e, s, i, o(r))), !this.isMuteLog) {
-                let t = ["", "==============??ÏµÍ³Í¨Öª??=============="];
+                let t = ["", "==============??ç³»ç»Ÿé€šçŸ¥??=============="];
                 t.push(e), s && t.push(s), i && t.push(i), console.log(t.join("\n")), this.logs = this.logs.concat(t)
             }
         }
         log(...t) { t.length > 0 && (this.logs = [...this.logs, ...t]), console.log(t.join(this.logSeparator)) }
         logErr(t, e) {
             const s = !this.isSurge() && !this.isQuanX() && !this.isLoon();
-            s ? this.log("", `??${this.name}, ´íÎó!`, t.stack) : this.log("", `??${this.name}, ´íÎó!`, t)
+            s ? this.log("", `??${this.name}, é”™è¯¯!`, t.stack) : this.log("", `??${this.name}, é”™è¯¯!`, t)
         }
         wait(t) { return new Promise(e => setTimeout(e, t)) }
         done(t = {}) {
             const e = (new Date).getTime(),
                 s = (e - this.startTime) / 1e3;
-            this.log("", `??${this.name}, ½áÊø! ?? ${s} Ãë`), this.log(), (this.isSurge() || this.isQuanX() || this.isLoon()) && $done(t)
+            this.log("", `??${this.name}, ç»“æŸ! ?? ${s} ç§’`), this.log(), (this.isSurge() || this.isQuanX() || this.isLoon()) && $done(t)
         }
     }(t, e)
 }
