@@ -1,6 +1,7 @@
 /*
 #City脚本配置
 cron "15 5-10/1 * * *" script-path=jd_pets.js,tag=东东萌宠
+
 */
 const $ = new Env('东东萌宠');
 let cookiesArr = [], cookie = '', allMessage = '';
