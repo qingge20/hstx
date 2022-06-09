@@ -62,7 +62,7 @@ async function tips(ckArr) {
 		debugLog(`【debug】 这是你第 ${num} 账号信息:\n ${ck}`);
 		await start();
 	}
-	await SendMsg(msg);
+	//await SendMsg(msg);
 })()
 	.catch((e) => $.logErr(e))
 	.finally(() => $.done());
