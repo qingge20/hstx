@@ -83,13 +83,8 @@ async function start() {
 	await box_info();
 	await $.wait(2 * 1000);
 
-
-	if (local_hours() == 14) {
-		console.log("开始 分享");
-		await do_Share();
+await do_Share();
 		await $.wait(2 * 1000);
-	}
-	local_hours()
 
 
 
