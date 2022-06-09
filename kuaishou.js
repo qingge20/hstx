@@ -4,13 +4,16 @@
  * 
    不懂什么是完整CK的加TG群
 
- cron "1 1-13/2 * * *" 
  * 
  * ========= 青龙--变量 =========
  *          ksjsb_data
  *
 
  */
+/*
+==========================Quantumultx=========================
+cron "1 1-20/2 * * *" 
+*/
 const $ = new Env("快手极速版");
 const notify = $.isNode() ? require("./sendNotify") : "";
 const Notify = 1 		
