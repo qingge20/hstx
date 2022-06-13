@@ -4,9 +4,8 @@
  * https://github.com/X1a0He/jd_scripts_fixed
  cron "18 5,13 * * *" 
  * */
-const    $    =    new    Env ( "领京豆二" )
-
-常量 jdCookieNode  =  $。是节点（）？ 要求（“./jdCookie.js”）：“”；
+const $ = new Env("领京豆二");
+const jdCookieNode = $.isNode() ? require("./jdCookie.js") : "";
 const notify = $.isNode() ? require('./sendNotify') : '';
 let cookiesArr = [], cookie = "", message = ``;
 $.taskInfos = [];
