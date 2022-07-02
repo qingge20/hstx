@@ -118,10 +118,6 @@ $.shareCodesArr = [];
                     }
                 }
             }
-            //await bankuai(cookie, 'functionId=jdhealth_exchange&body={"commodityType":2,"commodityId":"4"}&client=wh5&clientVersion=1.0.0&uuid=')
-            //await bankuai(cookie, 'functionId=jdhealth_exchange&body={"commodityType":2,"commodityId":"3"}&client=wh5&clientVersion=1.0.0&uuid=')
-            //await bankuai(cookie, 'functionId=jdhealth_exchange&body={"commodityType":2,"commodityId":"2"}&client=wh5&clientVersion=1.0.0&uuid=')
-            //await bankuai(cookie, 'functionId=jdhealth_exchange&body={"commodityType":2,"commodityId":"1"}&client=wh5&clientVersion=1.0.0&uuid=')
         }
     }
 })()
