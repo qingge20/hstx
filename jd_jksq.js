@@ -1,6 +1,6 @@
 
 /*
-cron "1 0,0 * * *" 
+cron "59 59 23 * * *" 
 
 */
 const $ = new Env('健康社区兑换京豆');
@@ -43,7 +43,7 @@ $.shareCodesArr = [];
             await getUA()
         }
     }
-    let lnTotalAcc = Math.ceil(cookiesArr.length );
+    let lnTotalAcc = Math.ceil(cookiesArr.length);
     console.log(`本次执行第${1}到${lnTotalAcc}个账号\n`);
     for (let i = 0; i < lnTotalAcc; i++) {
         if (cookiesArr[i]) {
@@ -54,17 +54,80 @@ $.shareCodesArr = [];
             $.nickName = '';
             message = '';
             console.log(`\n******开始【京东账号${$.index}】${$.nickName || $.UserName}*********\n`);
-            //   开始执行兑换都任务
-            await bankuai(cookie, 'functionId=jdhealth_exchange&body={"commodityType":2,"commodityId":"4"}&client=wh5&clientVersion=1.0.0&uuid=')
-            await bankuai(cookie, 'functionId=jdhealth_exchange&body={"commodityType":2,"commodityId":"3"}&client=wh5&clientVersion=1.0.0&uuid=')
-            await bankuai(cookie, 'functionId=jdhealth_exchange&body={"commodityType":2,"commodityId":"2"}&client=wh5&clientVersion=1.0.0&uuid=')
-            await bankuai(cookie, 'functionId=jdhealth_exchange&body={"commodityType":2,"commodityId":"1"}&client=wh5&clientVersion=1.0.0&uuid=')
+            //   开始执行兑换都任务-20
+            let result = await bankuai(cookie, 'functionId=jdhealth_exchange&body={"commodityType":2,"commodityId":"4"}&client=wh5&clientVersion=1.0.0&uuid=');
+            //console.log(`反馈结果:${result.data.bizMsg}`)
+            if (result.data.bizMsg == "success") {
+                console.log(`兑换成功:${result.data.result.jingBeanNum}豆`)
+
+            } else if (result.data.bizMsg == "到达今日兑换次数上限，不能再兑换哦~") {
+                console.log("今日兑换次数上限")
+            } else if (result.data.bizMsg == "活动太火爆啦") {
+                console.log("活动太火爆啦")
+            } else {
+                try {
+                    console.log(result.data.bizMsg)
+                } catch (e) {
+                } finally {
+
+                }
+                //任务-10
+                let result = await bankuai(cookie, 'functionId=jdhealth_exchange&body={"commodityType":2,"commodityId":"3"}&client=wh5&clientVersion=1.0.0&uuid=');
+                console.log(`反馈结果:${result.data.bizMsg}`)
+                if (result.data.bizMsg == "success") {
+                    console.log(`兑换成功:${result.data.result.jingBeanNum}豆`)
+
+                } else if (result.data.bizMsg == "到达今日兑换次数上限，不能再兑换哦~") {
+                    console.log("今日兑换次数上限")
+                } else {
+                    try {
+                        console.log(result.data.bizMsg)
+                    } catch (e) {
+                    } finally {
+                    }
+                    //任务-5
+                    let result = await bankuai(cookie, 'functionId=jdhealth_exchange&body={"commodityType":2,"commodityId":"2"}&client=wh5&clientVersion=1.0.0&uuid=');
+                    console.log(`反馈结果:${result.data.bizMsg}`)
+                    if (result.data.bizMsg == "success") {
+                        console.log(`兑换成功:${result.data.result.jingBeanNum}豆`)
+
+                    } else if (result.data.bizMsg == "到达今日兑换次数上限，不能再兑换哦~") {
+                        console.log("今日兑换次数上限")
+                    } else {
+                        try {
+                            console.log(result.data.bizMsg)
+                        } catch (e) {
+                        } finally {
+                        }
+                        //任务-3
+                        let result = await bankuai(cookie, 'functionId=jdhealth_exchange&body={"commodityType":2,"commodityId":"1"}&client=wh5&clientVersion=1.0.0&uuid=');
+                        console.log(`反馈结果:${result.data.bizMsg}`)
+                        if (result.data.bizMsg == "success") {
+                            console.log(`兑换成功:${result.data.result.jingBeanNum}豆`)
+
+                        } else if (result.data.bizMsg == "到达今日兑换次数上限，不能再兑换哦~") {
+                            console.log("今日兑换次数上限")
+                        } else {
+                            try {
+                                console.log(result.data.bizMsg)
+                            } catch (e) {
+                            } finally {
+                            }
+
+                        }
+                    }
+                }
+            }
+            //await bankuai(cookie, 'functionId=jdhealth_exchange&body={"commodityType":2,"commodityId":"4"}&client=wh5&clientVersion=1.0.0&uuid=')
+            //await bankuai(cookie, 'functionId=jdhealth_exchange&body={"commodityType":2,"commodityId":"3"}&client=wh5&clientVersion=1.0.0&uuid=')
+            //await bankuai(cookie, 'functionId=jdhealth_exchange&body={"commodityType":2,"commodityId":"2"}&client=wh5&clientVersion=1.0.0&uuid=')
+            //await bankuai(cookie, 'functionId=jdhealth_exchange&body={"commodityType":2,"commodityId":"1"}&client=wh5&clientVersion=1.0.0&uuid=')
         }
     }
 })()
 
 async function bankuai(Cooker, token) {
-    timeout = 1000
+    timeout = 500
     return new Promise((resolve) => {
         let url = {
             url: `https://api.m.jd.com`,
@@ -78,14 +141,15 @@ async function bankuai(Cooker, token) {
         $.post(url, async (err, resp, data) => {
             try {
                 let result = JSON.parse(data)
-                console.log(`抽奖成功:${result.msg}`)
-                if (result.data.bizCode == "-6060") {
-                    console.log(result.data.bizMsg)
-                } if (result.data.bizCode == "success") {
+                //console.log(result.data.bizMsg)
+                resolve(result);
+                /*
+                if (result.data.result.success == true) {
                     console.log(`兑换成功:${result.data.result.jingBeanNum}豆`)
+                    resolve(result.data.result.success);
                 } else {
-                    console.log(`兑换错误可能黑号`)
-                }
+                    console.log(result.data.bizMsg)
+                }*/
             } catch (e) {
 
             } finally {
