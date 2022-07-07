@@ -68,7 +68,7 @@ let NoNeedCodes = [];
     }
     if (llhelp) {
         console.log('开始收集您的互助码，用于账号内部互助，请稍等...');
-        for (let i = 0; i < cookiesArr.length; i++) {
+        for (let i = 0; i < 20; i++) {
             if (cookiesArr[i]) {
                 cookie = cookiesArr[i];
                 $.UserName = decodeURIComponent(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1]);
