@@ -14,7 +14,7 @@
 
 ================Loon==============
 [Script]
-cron "21 19,22 * * *" script-path=jd_speed_sign.js,tag=京东极速版
+cron "21 11,22 * * *" script-path=jd_speed_sign.js,tag=京东极速版
 
 ===============Surge=================
 京东极速版 = type=cron,cronexp="21 3,8 * * *",wake-system=1,timeout=33600,script-path=jd_speed_sign.js
