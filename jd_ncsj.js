@@ -13,7 +13,7 @@
 10 2 * * * jd_fruit_friend.js, tag=东东农场好友删减奖励, img-url=https://raw.githubusercontent.com/58xinian/icon/master/jdnc.png, enabled=true
 =========================Loon=============================
 [Script]
-cron "10 2 * * *" script-path=jd_fruit_friend.js,tag=东东农场好友删减奖励
+cron "10 2,11 * * *" script-path=jd_fruit_friend.js,tag=东东农场好友删减奖励
 
 =========================Surge============================
 东东农场好友删减奖励 = type=cron,cronexp="10 2 * * *",wake-system=1,timeout=3600,script-path=jd_fruit_friend.js
