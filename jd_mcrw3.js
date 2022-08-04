@@ -1,6 +1,6 @@
 /*
 #City脚本配置
-cron "45 12-16/1 * * *"
+cron "45 13-18/2 * * *"
 */
 const $ = new Env('东东萌宠');
 let cookiesArr = [], cookie = '', allMessage = '';
