@@ -6,7 +6,7 @@
 cron "5 0,5,12,17 * * *" script-path=jd_fruit.js,tag=东东农场
 export DO_TEN_WATER_AGAIN="" 默认再次浇水
 */
-const $ = new Env('东东农场互助版');
+const $ = new Env('东东农场内部版');
 let cookiesArr = [], cookie = '', isBox = false, notify,allMessage = '';
 
 
@@ -68,7 +68,7 @@ let NoNeedCodes = [];
     }
     if (llhelp) {
         console.log('开始收集您的互助码，用于账号内部互助，请稍等...');
-        for (let i = 0; i < 20; i++) {
+        for (let i = 0; i < 50; i++) {
             if (cookiesArr[i]) {
                 cookie = cookiesArr[i];
                 $.UserName = decodeURIComponent(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1]);
