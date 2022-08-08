@@ -114,10 +114,10 @@ async function jdPlantBean() {
 	  await doHelp();
 		if (lnrun == 3) {
 		console.log(`\n【访问接口次数达到3次，休息半分钟.....】\n`);
-		await $.wait(30 * 1000);
+		await $.wait(10 * 1000);
 		lnrun = 0;
 		}
-	    await $.wait(3 * 1000);
+	    await $.wait(1 * 1000);
     } else {
       console.log(`种豆得豆-初始失败:  ${JSON.stringify($.plantBeanIndexResult)}`);
     }
@@ -145,7 +145,7 @@ async function doHelp() {
     await helpShare(plantUuid);
 	  if (lnruns == 5) {
 		  console.log(`\n【访问接口次数达到5次，休息半分钟.....】\n`);
-		  await $.wait(30 * 1000);
+		  await $.wait(10 * 1000);
 		  lnruns = 0;
 	  }
         if ($.helpResult && $.helpResult.code === '0' && $.helpResult.data) {
@@ -299,7 +299,7 @@ async function plantBeanIndex() {
     }
     if ($.plantBeanIndexResult.errorCode) {
         console.log(`获取任务及基本信息出错，30秒后重试\n`)
-        await $.wait(30000);
+        await $.wait(10000);
         $.plantBeanIndexResult = await request('plantBeanIndex'); 
         if ($.plantBeanIndexResult.errorCode === 'PB101') {
             console.log(`\n活动太火爆了，还是去买买买吧！\n`)
